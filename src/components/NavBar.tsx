@@ -1,3 +1,5 @@
+import { Avatar } from '@/features/profile/components/Avatar'
+import { LogoutButton } from '@/features/profile/components/LogoutButton'
 import Link from 'next/link'
 import React from 'react'
 import { BsBox, BsSpotify } from 'react-icons/bs'
@@ -29,8 +31,9 @@ export const NavBar = () => {
           </span>
         </div>
       </div>
-      <div className='size-9 shrink-0 bg-pink-600 rounded-full ring-8 ring-card grid place-content-center'>
-        <span className='font-medium'>Y</span>
+      <div className='flex items-center gap-4'>
+        <LogoutButton />
+        <Avatar />
       </div>
     </div>
   )

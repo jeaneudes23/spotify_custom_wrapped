@@ -1,5 +1,5 @@
 import React from 'react'
-import { BiPlus, BiPlusCircle } from 'react-icons/bi'
+import {BiPlusCircle } from 'react-icons/bi'
 
 export const TrackPlayer = () => {
   return (

@@ -5,7 +5,7 @@
   --font-mono: var(--font-geist-mono);
   --spacing-navbar: 68px;
   --spacing-sidebar: 420px;
-  --spacing-player: 80px;
+  --spacing-player: 20px;
   --spacing-main-content: calc(100dvh - var(--spacing-navbar) - var(--spacing-player));
 }
 
