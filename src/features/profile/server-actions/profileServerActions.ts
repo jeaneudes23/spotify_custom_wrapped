@@ -16,7 +16,7 @@ export async function authenticate(formData: FormData): Promise<{error: string} 
       }
     }
     throw error;
-  }
+  } 
 }
 
 export async function logout() {
