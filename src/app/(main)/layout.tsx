@@ -4,7 +4,10 @@ import { Profile } from '@/features/dashboard/components/Profile'
 import { Providers } from '@/providers/Providers'
 import React, { PropsWithChildren } from 'react'
 
+export const revalidate = 0
+
 export default function layout({children}: PropsWithChildren) {
+
   return (
     <Providers>
       <NavBar />

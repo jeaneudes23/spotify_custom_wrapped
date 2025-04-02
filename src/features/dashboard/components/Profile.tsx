@@ -1,4 +1,5 @@
 import { auth } from '@/auth'
+import { StoryOpener } from '@/features/story/components/StoryOpener'
 import React from 'react'
 import { BiUser } from 'react-icons/bi'
 import { CgStories } from 'react-icons/cg'
@@ -20,22 +21,13 @@ export const Profile = async () => {
         <h3 className='text-xl font-semibold'><CgStories className='size-6 inline mr-1'/>Available Stories</h3>
         <ul className='divide-y divide-muted'>
           <li className='py-3'>
-            <div className='flex justify-between items-center'>
-              <h4>Monthy</h4>
-              <button className='px-3 py-1 font-medium bg-muted hover:bg-card cursor-pointer rounded-md text-sm'>View</button>
-            </div>
+            <StoryOpener label='monthy' time_range='short_term' />
           </li>
           <li className='py-3'>
-            <div className='flex justify-between items-center'>
-              <h4>6 months</h4>
-              <button className='px-3 py-1 font-medium bg-muted hover:bg-card cursor-pointer rounded-md text-sm'>View</button>
-            </div>
+            <StoryOpener label='6 months' time_range='medium_term' />
           </li>
           <li className='py-3'>
-            <div className='flex justify-between items-center'>
-              <h4>Last year</h4>
-              <button className='px-3 py-1 font-medium bg-muted hover:bg-card cursor-pointer rounded-md text-sm'>View</button>
-            </div>
+            <StoryOpener label='Year' time_range='long_term' />
           </li>
         </ul>
       </div>
