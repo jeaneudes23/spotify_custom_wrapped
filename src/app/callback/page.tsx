@@ -1,5 +1,6 @@
 import AuthenticateUser from '@/components/AuthenticateUser'
-import axios, { isAxiosError } from 'axios'
+import { logAxiosRequestError } from '@/lib/axiosErrorHandler'
+import axios from 'axios'
 import { randomUUID } from 'crypto'
 import { redirect } from 'next/navigation'
 import React from 'react'
@@ -33,6 +34,7 @@ export default async function page({searchParams}: Props) {
   const getTokens = async (code: string): Promise<{access_token: string, refresh_token: string} | undefined> => {
     // Checking if the states match would require to cache the old state
     try {
+      const token = Buffer.from(client_id + ':' + client_secret).toString('base64')
       const response = await axios.post('https://accounts.spotify.com/api/token', {
         code,
         redirect_uri,
@@ -40,7 +42,7 @@ export default async function page({searchParams}: Props) {
       }, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization: 'Basic '+(Buffer.from(client_id + ':' + client_secret).toString('base64'))
+          Authorization: `Basic ${token}`
         } 
       })
   
@@ -48,11 +50,8 @@ export default async function page({searchParams}: Props) {
       return {access_token,refresh_token}
 
     } catch (error) {
-      if (isAxiosError(error)) {
-        console.log(error.response?.data)
-      }else {
-        console.log(error)
-      }
+      console.log('Buffer Error')
+      logAxiosRequestError(error)
     }
   }
 

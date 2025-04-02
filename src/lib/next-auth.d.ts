@@ -4,7 +4,7 @@ import { DefaultSession } from "next-auth";
 
 // for some reason es-lint doesn't recognize that this is being used
 import { JWT } from "next-auth/jwt"
-/* eslint-enable*/
+/* eslint-enable */
 
 declare module "next-auth" {
   interface Session {

@@ -1,20 +1,21 @@
 "use server"
 
 import { signIn, signOut } from "@/auth"
-import { redirect } from "next/navigation"
+import { AuthError } from "next-auth";
 
-export async function authenticate(formData: FormData): Promise<{ok: boolean}| undefined>{
-  let errorOccurred = false;
+export async function authenticate(formData: FormData): Promise<{error: string} | undefined>{
   try {
-    await signIn('credentials', Object.fromEntries(formData) )    
+    await signIn('credentials', {...Object.fromEntries(formData),redirectTo: '/home'} , )    
   } catch (error) {
-    console.log(error)
-    errorOccurred = true;
-    return {ok: false}
-  } finally {
-    if (!errorOccurred) {
-      redirect('/home');
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return { error: "Invalid credentials!" };
+        default:
+          return { error: "Something went wrong"};
+      }
     }
+    throw error;
   }
 }
 
