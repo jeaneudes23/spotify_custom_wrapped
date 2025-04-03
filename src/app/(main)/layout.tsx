@@ -13,7 +13,7 @@ export default function layout({children}: PropsWithChildren) {
       <NavBar />
       <div className="flex grow h-main-content px-4 gap-4">
         <Library />
-        <main className="grow rounded-md bg-card">{children}</main>
+        <main className="grow rounded-md bg-card h-full overflow-y-auto">{children}</main>
         <Profile />
       </div>
     </Providers>
