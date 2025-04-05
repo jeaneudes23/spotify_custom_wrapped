@@ -14,7 +14,7 @@ interface Props {
   }>
 }
 
-export default async function page({searchParams}: Props) {
+export default async function page({ searchParams }: Props) {
   const code = (await searchParams).code
   const response_state = (await searchParams).state
 
@@ -30,9 +30,9 @@ export default async function page({searchParams}: Props) {
     redirect_uri,
     state,
   })
-  
 
-  const getTokens = async (code: string): Promise<{access_token: string, refresh_token: string} | undefined> => {
+
+  const getTokens = async (code: string): Promise<{ access_token: string, refresh_token: string } | undefined> => {
     // Checking if the states match would require to cache the old state
     try {
       const token = Buffer.from(client_id + ':' + client_secret).toString('base64')
@@ -44,11 +44,11 @@ export default async function page({searchParams}: Props) {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           Authorization: `Basic ${token}`
-        } 
+        }
       })
-  
-      const { access_token , refresh_token } = response.data
-      return {access_token,refresh_token}
+
+      const { access_token, refresh_token } = response.data
+      return { access_token, refresh_token }
 
     } catch (error) {
       console.log('Buffer Error')
@@ -59,15 +59,19 @@ export default async function page({searchParams}: Props) {
 
   if (code && response_state) {
     const tokens = await getTokens(code)
-    if (tokens){ return (
-      <AuthenticateUser {...tokens}/>
-    )} else {
-      <div className='pt-36 pb-8 text-center space-y-4'>
-      <div className='flex justify-center'>
-        <MdErrorOutline className='size-8 text-red-700 animate-spin' />
-      </div>
-      <h2 className='lg:text-lg font-semibold'>Trying to login ...</h2>
-    </div>
+    if (tokens) {
+      return (
+        <AuthenticateUser {...tokens} />
+      )
+    } else {
+      return (
+        <div className='pt-36 pb-8 text-center space-y-4'>
+          <div className='flex justify-center'>
+            <MdErrorOutline className='size-8 text-red-700 animate-spin' />
+          </div>
+          <h2 className='lg:text-lg font-semibold'>Trying to login ...</h2>
+        </div>
+      )
     }
   } else {
     redirect(`https://accounts.spotify.com/authorize?${requestParams.toString()}`)
