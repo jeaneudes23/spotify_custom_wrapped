@@ -6,8 +6,8 @@
   --font-geist-sans: var(--font-geist-sans);
   --spacing-navbar: 68px;
   --spacing-sidebar: 420px;
-  --spacing-player: 20px;
-  --spacing-main-content: calc(100dvh - var(--spacing-navbar) - var(--spacing-player));
+  --spacing-footer: 68px;
+  --spacing-main-content: calc(100dvh - var(--spacing-navbar) - var(--spacing-footer));
 }
 
 @theme {

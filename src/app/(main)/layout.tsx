@@ -6,14 +6,18 @@ import React, { PropsWithChildren } from 'react'
 
 export const revalidate = 0
 
-export default function layout({children}: PropsWithChildren) {
+export default function layout({ children }: PropsWithChildren) {
 
   return (
     <Providers>
       <NavBar />
       <div className="flex grow h-main-content px-4 gap-4">
         <Library />
-        <main className="grow rounded-md bg-card">{children}</main>
+        <main className='flex flex-col grow'>
+          <div className="bg-card grow overflow-y-auto rounded-md">
+            {children}
+          </div>
+        </main>
         <Profile />
       </div>
     </Providers>

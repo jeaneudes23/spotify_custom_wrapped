@@ -25,7 +25,7 @@ export default async function page({searchParams}: Props) {
   const requestParams = new URLSearchParams({
     response_type: 'code',
     client_id,
-    scope: 'user-read-private user-read-email',
+    scope: 'user-read-email user-top-read',
     redirect_uri,
     state,
   })
