@@ -1,11 +1,24 @@
-import { auth } from "@/auth";
-import PreviewJson from "@/components/PreviewJson";
+import { SelectedTimeRange } from "@/components/TimeRange";
+import { TopArtists } from "@/features/artists/components/TopArtists";
+import { TopTracks } from "@/features/tracks/components/TopTracks";
 
-export default async function Home() {
-  const session = await auth()
+export default function Home() {
   return (
-    <div>
-      <PreviewJson data={session?.user.access_token}/>
+    <div className="overflow-y-auto bg-card">
+      <div className="p-6 space-y-4">
+        <div>
+          <h2 className='text-2xl font-bold'>Top artists</h2>
+          <SelectedTimeRange className="text-muted-foreground font-medium capitalize"/>
+        </div>
+        <TopArtists />
+      </div>
+      <div className="p-6 space-y-4">
+        <div>
+          <h2 className='text-2xl font-bold'>Top tracks</h2>
+          <SelectedTimeRange className="text-muted-foreground font-medium capitalize"/>
+        </div>
+        <TopTracks />
+      </div>
     </div>
   );
 }

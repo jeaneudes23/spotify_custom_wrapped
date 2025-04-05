@@ -6,8 +6,8 @@ export default function page() {
   return (
     <div className='flex flex-col h-full bg-card rounded-md'>
       <div className='shrink-0 p-6 border-b border-muted'>
-        <h2 className='text-2xl font-bold'>Top artists: past <SelectedTimeRange /></h2>
-        <p className='text-muted-foreground'>Only visible to you</p>
+        <h2 className='text-2xl font-bold'>Top artists</h2>
+        <SelectedTimeRange className="text-muted-foreground font-medium capitalize" />
       </div>
       <div className='overflow-y-auto grow p-6'>
         <TopArtistsInfinite />

@@ -1,7 +1,7 @@
-import api from "@/lib/api";
 import { ResponseMeta, TimeRange } from "@/lib/types";
-import { Artist } from "../schema/artistsSchema";
+import { Track } from "../schema/tracksSchema";
 import { EmpyResponseMeta } from "@/lib/constants";
+import api from "@/lib/api";
 import { logAxiosRequestError } from "@/lib/axiosErrorHandler";
 
 interface Params {
@@ -10,15 +10,15 @@ interface Params {
   time_range?: TimeRange
 }
 
-export async function getTopArtists(params?: Params): Promise<{artists: Artist[],meta: ResponseMeta}> {
+export async function getTopTracks(params?: Params): Promise<{tracks: Track[],meta: ResponseMeta}> {
   try {
-    const response = await api.get('/me/top/artists',{params})
-    const { items: artists, ...meta} = response.data
-    return { artists , meta}
+    const response = await api.get('/me/top/tracks',{params})
+    const { items: tracks, ...meta} = response.data
+    return { tracks , meta}
   } catch (error) {
     logAxiosRequestError(error)
     return {
-      artists: [],
+      tracks: [],
       meta: EmpyResponseMeta
     }
   }
