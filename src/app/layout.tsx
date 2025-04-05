@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Poppins } from "next/font/google";
 import "./globals.css";
+import { Footer } from "@/components/Footer";
 
 
 const geistSans = Geist({
@@ -29,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${poppins.variable} font-sans antialiased bg-background text-foreground`}>
         {children}
+        <Footer />
       </body>
     </html>
   );

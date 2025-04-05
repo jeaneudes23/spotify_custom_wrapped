@@ -6,7 +6,7 @@ import { RxCross1 } from 'react-icons/rx'
 
 export const Library = () =>  {
   return (
-    <div className='bg-card basis-1/4 shrink-0 rounded-md flex flex-col h-full'>
+    <div className='bg-card basis-1/5 shrink-0 rounded-md flex flex-col h-full'>
       <div className='shrink-0 p-6 space-y-4'>
         <h2 className='text-xl font-semibold'><LuLibraryBig className='size-6 inline mr-1'/>Your Library</h2>
         <div className='flex items-center gap-2'>
@@ -19,7 +19,7 @@ export const Library = () =>  {
           key={'playlists'}
           fallback={<PlaylistSkeleton />}
         >
-          <UserPlaylists />
+          {/* <UserPlaylists /> */}
         </Suspense>
       </div>
     </div>
