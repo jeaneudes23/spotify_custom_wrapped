@@ -1,9 +1,7 @@
 import { auth } from '@/auth'
 import { LogoutButton } from '@/features/profile/components/LogoutButton'
-import { StoryOpener } from '@/features/story/components/StoryOpener'
 import React from 'react'
 import { BiUser } from 'react-icons/bi'
-import { CgStories } from 'react-icons/cg'
 
 export const Profile = async () => {
   const session = await auth()
@@ -19,18 +17,7 @@ export const Profile = async () => {
         </div>
       </div>
       <div className='grow overflow-y-auto p-6 space-y-4'>
-        <h3 className='text-xl font-semibold'><CgStories className='size-6 inline mr-1'/>Available Stories</h3>
-        <ul className='divide-y divide-muted'>
-          <li className='py-3'>
-            <StoryOpener label='monthy' time_range='short_term' />
-          </li>
-          <li className='py-3'>
-            <StoryOpener label='6 months' time_range='medium_term' />
-          </li>
-          <li className='py-3'>
-            <StoryOpener label='Year' time_range='long_term' />
-          </li>
-        </ul>
+      
       </div>
       <div className='grid px-6 py-4'>
         <LogoutButton className='bg-muted/50 font-medium text-center py-2 text-sm cursor-pointer hover:opacity-80 rounded-md'>Logout</LogoutButton>

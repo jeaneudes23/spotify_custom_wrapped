@@ -1,15 +1,15 @@
 "use client"
 
+import { useTimeRange } from "@/hooks/useTimeRange"
 import { TIME_RANGES } from "@/lib/constants"
 import { TimeRange } from "@/lib/types"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { CgCalendar } from "react-icons/cg"
 
 export const SelectedTimeRange = ({className}: {className?: string}) => {
-  const searchParams = useSearchParams()
-  const activeTimePeriod = TIME_RANGES.map(period => period.time_range).includes(searchParams.get('time_range') as TimeRange) ? searchParams.get('time_range') : 'short_term'
+  const current_time_range = useTimeRange()
   return (
-    <span className={className}>{TIME_RANGES.find(period => period.time_range == activeTimePeriod)?.label}</span>
+    <span className={className}>{TIME_RANGES.find(period => period.time_range == current_time_range)?.label}</span>
   )
 }
 
