@@ -1,4 +1,5 @@
 import { auth } from '@/auth'
+import { LogoutButton } from '@/features/profile/components/LogoutButton'
 import { StoryOpener } from '@/features/story/components/StoryOpener'
 import React from 'react'
 import { BiUser } from 'react-icons/bi'
@@ -30,6 +31,9 @@ export const Profile = async () => {
             <StoryOpener label='Year' time_range='long_term' />
           </li>
         </ul>
+      </div>
+      <div className='grid px-6 py-4'>
+        <LogoutButton className='bg-primary font-medium text-center py-2 text-sm cursor-pointer hover:opacity-80 rounded-md'>Logout</LogoutButton>
       </div>
     </div>
   )

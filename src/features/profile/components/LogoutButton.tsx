@@ -1,13 +1,18 @@
 "use client"
 
+import { PropsWithChildren } from "react"
 import { logout } from "../server-actions/profileServerActions"
 
-export const LogoutButton = () => {
+interface Props extends PropsWithChildren {
+  className?: string
+}
+
+export const LogoutButton = ({className,children}: Props) => {
   const signOut = async () => {
     await logout()
   }
 
   return (
-    <button className="cursor-pointer" onClick={signOut}>Logout</button>
+    <button className={className} onClick={signOut}>{children}</button>
   )
 }

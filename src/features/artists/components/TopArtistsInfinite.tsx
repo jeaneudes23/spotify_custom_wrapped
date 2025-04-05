@@ -40,7 +40,7 @@ export const TopArtistsInfinite = () => {
     <LoadingSkeleton /> 
     : 
     hasNextPage &&
-    <button className="bg-foreground text-background px-6 py-2 font-medium capitalize mx-auto rounded-md cursor-pointer hover:opacity-80" onClick={() => fetchNextPage()}>Load More</button>
+    <button className="bg-foreground text-sm text-background px-6 py-2 font-medium capitalize mx-auto rounded-md cursor-pointer hover:opacity-80" onClick={() => fetchNextPage()}>Load More</button>
     }
     </div>
   )
