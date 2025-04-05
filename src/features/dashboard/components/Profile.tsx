@@ -33,7 +33,7 @@ export const Profile = async () => {
         </ul>
       </div>
       <div className='grid px-6 py-4'>
-        <LogoutButton className='bg-primary font-medium text-center py-2 text-sm cursor-pointer hover:opacity-80 rounded-md'>Logout</LogoutButton>
+        <LogoutButton className='bg-muted/50 font-medium text-center py-2 text-sm cursor-pointer hover:opacity-80 rounded-md'>Logout</LogoutButton>
       </div>
     </div>
   )

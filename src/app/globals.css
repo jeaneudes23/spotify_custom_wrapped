@@ -5,7 +5,6 @@
   --font-mono: var(--font-geist-mono);
   --font-geist-sans: var(--font-geist-sans);
   --spacing-navbar: 68px;
-  --spacing-sidebar: 420px;
   --spacing-footer: 68px;
   --spacing-main-content: calc(100dvh - var(--spacing-navbar) - var(--spacing-footer));
 }
@@ -13,6 +12,7 @@
 @theme {
   --color-background: #000;
   --color-card: #121212;
+  --color-card-foreground: #2d2d2d;
   --color-foreground: #fff;
   --color-muted: #555555;
   --color-muted-foreground: #b3b3b3;

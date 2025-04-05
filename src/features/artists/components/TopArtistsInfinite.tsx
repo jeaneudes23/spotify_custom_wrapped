@@ -16,7 +16,7 @@ export const TopArtistsInfinite = () => {
     return await getTopArtists({offset: pageParam,time_range: time_range})
   }
   const { data , hasNextPage , isFetchingNextPage , status , fetchNextPage } = useInfiniteQuery({
-    queryKey: ['topArtists'],
+    queryKey: ['topArtists', time_range],
     queryFn: getInfiniteTopArtists,
     initialPageParam: 0,
     getNextPageParam: (lastPage) => getNextPageOffset(lastPage.meta.next)
@@ -27,7 +27,7 @@ export const TopArtistsInfinite = () => {
     : status === 'error' ? 
     <p>Error</p>:  (
     <div className="grid gap-6">
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-6">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-y-6 gap-x-3">
       {data.pages.map((group,i) => 
         <Fragment key={i}>
           {group.artists.map(artist => 

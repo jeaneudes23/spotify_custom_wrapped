@@ -14,9 +14,7 @@ export default function layout({ children }: PropsWithChildren) {
       <div className="flex grow h-main-content px-4 gap-4">
         <Library />
         <main className='flex flex-col grow'>
-          <div className="bg-card grow overflow-y-auto rounded-md">
             {children}
-          </div>
         </main>
         <Profile />
       </div>

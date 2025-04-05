@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import { SwitchTimeRange } from './TimeRange'
 
 export const InfoPicker = () => {
   const path = usePathname()
@@ -17,11 +18,7 @@ export const InfoPicker = () => {
         )}
       </div>
       <div>
-        <select name="time_range" id="" className="py-1 text-sm bg-card border-foreground border rounded-md">
-          <option value="short_term">Month</option>
-          <option value="short_term">6 Months</option>
-          <option value="short_term">year</option>
-        </select>
+        <SwitchTimeRange />
       </div>
     </div>
   )

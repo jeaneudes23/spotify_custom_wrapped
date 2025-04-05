@@ -4,6 +4,7 @@ import axios from 'axios'
 import { randomUUID } from 'crypto'
 import { redirect } from 'next/navigation'
 import React from 'react'
+import { MdErrorOutline } from 'react-icons/md'
 
 interface Props {
   searchParams: Promise<{
@@ -61,7 +62,12 @@ export default async function page({searchParams}: Props) {
     if (tokens){ return (
       <AuthenticateUser {...tokens}/>
     )} else {
-      redirect('/')
+      <div className='pt-36 pb-8 text-center space-y-4'>
+      <div className='flex justify-center'>
+        <MdErrorOutline className='size-8 text-red-700 animate-spin' />
+      </div>
+      <h2 className='lg:text-lg font-semibold'>Trying to login ...</h2>
+    </div>
     }
   } else {
     redirect(`https://accounts.spotify.com/authorize?${requestParams.toString()}`)

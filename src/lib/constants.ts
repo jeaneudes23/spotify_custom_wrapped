@@ -3,15 +3,15 @@ import { ResponseMeta, TimeRange } from "./types"
 export const TIME_RANGES: {time_range: TimeRange, label: string}[] = [
   {
     time_range: 'short_term',
-    label: 'Month',
+    label: 'month',
   },
   {
     time_range: 'medium_term',
-    label: '6 Months',
+    label: '6 months',
   },
   {
     time_range: 'long_term',
-    label: 'Year',
+    label: 'year',
   },
 ] 
 
