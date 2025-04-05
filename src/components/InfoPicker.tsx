@@ -1,19 +1,16 @@
 "use client"
 
 import Link from 'next/link'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 
 export const InfoPicker = () => {
-  const { push } = useRouter()
   const path = usePathname()
-  const searchParams = useSearchParams()
 
-  const PAGES = ['home','tracks','artists']
-  
+  const PAGES = ['home','tracks','artists']  
 
   return (
-    <div className="bg-gradient-to-l to-card bg-muted rounded-t-md p-6  flex justify-between items-center border-b border-muted">
+    <div className="flex justify-between items-center grow">
       <div className="text-sm flex items-center gap-4 capitalize">
         {PAGES.map(page => 
           <Link key={page} href={`/${page}`} className={`px-3 py-1 rounded-md font-medium ${path == `/${page}` ? 'bg-foreground text-background' : 'bg-white/20'}`}>{page}</Link>

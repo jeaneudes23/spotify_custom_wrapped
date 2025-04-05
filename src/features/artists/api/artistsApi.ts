@@ -15,6 +15,7 @@ export async function getTopArtists(params?: Params): Promise<{artists: Artist[]
     const { items: artists, ...meta} = response.data
     return { artists , meta}
   } catch (error) {
+    console.log(error)
     return {
       artists: [],
       meta: EmpyResponseMeta

@@ -19,7 +19,7 @@ export const Library = () =>  {
           key={'playlists'}
           fallback={<PlaylistSkeleton />}
         >
-          {/* <UserPlaylists /> */}
+          <UserPlaylists />
         </Suspense>
       </div>
     </div>

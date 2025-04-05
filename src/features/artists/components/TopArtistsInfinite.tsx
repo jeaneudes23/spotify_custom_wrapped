@@ -5,16 +5,21 @@ import { getTopArtists } from "../api/artistsApi"
 import { getNextPageOffset } from "@/lib/utils"
 import { Fragment } from "react"
 import { ArtistCard, ArtistCardSkeleton } from "./ArtistCard"
+import { useSearchParams } from "next/navigation"
+import { TimeRange } from "@/lib/types"
+import { TIME_RANGES } from "@/lib/constants"
 
 export const TopArtistsInfinite = () => {
+  const searchParams = useSearchParams()
+  const time_range = (TIME_RANGES.map(period => period.time_range).includes(searchParams.get('time_range') as TimeRange) ? searchParams.get('time_range') as TimeRange : 'short_term' ) satisfies TimeRange
   const getInfiniteTopArtists = async ({ pageParam }: {pageParam: number}) => {
-    return await getTopArtists({offset: pageParam,time_range: 'short_term'})
+    return await getTopArtists({offset: pageParam,time_range: time_range})
   }
-  const { data , error , hasNextPage , isFetchingNextPage , status , fetchNextPage } = useInfiniteQuery({
+  const { data , hasNextPage , isFetchingNextPage , status , fetchNextPage } = useInfiniteQuery({
     queryKey: ['topArtists'],
     queryFn: getInfiniteTopArtists,
     initialPageParam: 0,
-    getNextPageParam: (lastPage,pages) => getNextPageOffset(lastPage.meta.next)
+    getNextPageParam: (lastPage) => getNextPageOffset(lastPage.meta.next)
   })
 
   return status === 'pending' ? 

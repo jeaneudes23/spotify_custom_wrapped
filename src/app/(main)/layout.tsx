@@ -1,4 +1,3 @@
-import { InfoPicker } from '@/components/InfoPicker'
 import { NavBar } from '@/components/NavBar'
 import { Library } from '@/features/dashboard/components/Library'
 import { Profile } from '@/features/dashboard/components/Profile'
@@ -15,8 +14,7 @@ export default function layout({ children }: PropsWithChildren) {
       <div className="flex grow h-main-content px-4 gap-4">
         <Library />
         <main className='flex flex-col grow'>
-          <InfoPicker />
-          <div className="bg-card grow overflow-y-auto rounded-b-md">
+          <div className="bg-card grow overflow-y-auto rounded-md">
             {children}
           </div>
         </main>
