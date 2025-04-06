@@ -8,12 +8,12 @@ import { FaExternalLinkAlt } from 'react-icons/fa'
 
 export const NavBar = () => {
   return (
-    <div className='h-navbar flex justify-center gap-4 mx-4'>
+    <div className='h-navbar flex justify-center mx-4 gap-2 lg:gap-4'>
       <div className='basis-1/5 flex justify-start items-center'>
         <Link href={'/'} className='p-3 bg-card hover:opacity-80 rounded-full'><RxHome className='size-6' /></Link>
       </div>
       <InfoPicker />
-      <div className='basis-1/5 hidden lg:flex justify-end items-center' >
+      <div className='lg:basis-1/5 flex justify-end items-center' >
         <div className="relative group">
           <button className='p-3 bg-card hover:opacity-80 rounded-full cursor-pointer group-focus-within:ring-2 ring-primary'>
             <span className="sr-only">User</span>

@@ -34,7 +34,6 @@ export const StoryOpener = ({ time_range , className , children }: Props) => {
   const time_range_label = TIME_RANGES.find(period => period.time_range == time_range)?.label ?? ''
 
   const getStoryData = async () => {
-    setIsVisible(true)
     const [{ artists }, { tracks }] = await Promise.all([await getTopArtists({ time_range, limit: LIMIT }), await getTopTracks({ time_range, limit: LIMIT })])
     if (!!!artists.length || !!!tracks.length) {
       throw new Error('No Data')
@@ -82,7 +81,7 @@ export const StoryOpener = ({ time_range , className , children }: Props) => {
                 <p>Error</p>
               </div>
               :
-              <div className={`max-w-md fixed inset-8 max-h-96 mt-8 lg:mt-16 mx-auto space-y-4 z-50 ${isClosing ? 'animate-[fade-out_0.3s_ease_1_forwards]' : 'animate-[fade-in_0.3s_ease_1_forwards]'}`}>
+              <div className={`max-w-md fixed inset-4 lg:inset-8 max-h-96 mt-8 lg:mt-16 mx-auto space-y-4 z-50 ${isClosing ? 'animate-[fade-out_0.3s_ease_1_forwards]' : 'animate-[fade-in_0.3s_ease_1_forwards]'}`}>
                 <div className='flex justify-between'>
                   <div className='flex items-center gap-2'>
                     {SLIDES.map(slide =>
@@ -115,7 +114,7 @@ const ArtistsSlide = ({ artists, time_range_label }: { artists: Artist[], time_r
   return (
     <div className='basis-full shrink-0 h-full flex flex-col'>
       <div className='px-6 mt-3'>
-        <h3 className='text-2xl font-bold'>Top Artists</h3>
+        <h3 className='text-xl font-bold'>Top Artists</h3>
         <p className='font-medium text-muted-foreground capitalize'>{time_range_label}</p>
       </div>
       <div className='overflow-y-auto px-6 space-y-2 my-3'>
@@ -135,7 +134,7 @@ const TracksSlide = ({ tracks, time_range_label }: { tracks: Track[], time_range
   return (
     <div className='basis-full shrink-0 h-full flex flex-col'>
       <div className='px-6 mt-3'>
-        <h3 className='text-2xl font-bold'>Top Tracks</h3>
+        <h3 className='text-xl font-bold'>Top Tracks</h3>
         <p className='font-medium text-muted-foreground capitalize'>{time_range_label}</p>
       </div>
       <div className='overflow-y-auto px-6 space-y-2 my-3'>

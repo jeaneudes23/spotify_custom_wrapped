@@ -4,7 +4,6 @@ import { StoryOpener } from "@/features/stories/components/StoryOpener";
 import { TopTracks } from "@/features/tracks/components/TopTracks";
 import { TIME_RANGES } from "@/lib/constants";
 import Link from "next/link";
-import { FaExternalLinkAlt } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -28,18 +27,17 @@ export default function Home() {
             <SelectedTimeRange className="text-muted-foreground font-medium capitalize" />
 
           </div>
-          <Link href={'/artists'} className="text-sm font-medium hover:underline text-muted-foreground"><FaExternalLinkAlt className="inline size-3" /> View More</Link>
-
+          <Link href={'/artists'} className="text-sm font-medium hover:underline text-muted-foreground">View More</Link>
         </div>
         <TopArtists />
       </div>
       <div className="p-4 lg:p-6 space-y-4">
-        <div>
+        <div className="flex justify-between items-start gap-2 flex-wrap">
           <div>
             <h2 className='text-2xl font-bold'>Top tracks</h2>
             <SelectedTimeRange className="text-muted-foreground font-medium capitalize" />
           </div>
-          <Link href={'/tracks'} className="text-sm font-medium hover:underline text-muted-foreground"><FaExternalLinkAlt className="inline size-3" /> View More</Link>
+          <Link href={'/tracks'} className="text-sm font-medium hover:underline text-muted-foreground">View More</Link>
         </div>
         <TopTracks />
       </div>
