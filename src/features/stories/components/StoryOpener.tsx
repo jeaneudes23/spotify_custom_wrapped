@@ -166,7 +166,7 @@ const TracksSlide = ({ tracks, label }: { tracks: Track[], label: string }) => {
       </div>
       <div className='overflow-y-auto px-6 space-y-2 my-3'>
         {tracks.map((track, index) =>
-          <div className='text-sm flex items-center grow py-2 px-3 bg-card-foreground hover:bg-card-foreground -ml-2 rounded-md'>
+          <div key={index} className='text-sm flex items-center grow py-2 px-3 bg-card-foreground hover:bg-card-foreground -ml-2 rounded-md'>
             <div className='text-muted-foreground font-semibold basis-[2ch]'>{index+1}</div>
             <div className='flex items-center gap-2 '>
               <div className='shrink-0 w-12'>
