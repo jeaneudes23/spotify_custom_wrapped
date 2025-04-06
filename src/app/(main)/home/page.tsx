@@ -11,9 +11,11 @@ export default function Home() {
         <div>
           <h2 className="text-2xl font-semibold">Available stories</h2>
         </div>
-        <div className="flex">
+        <div className="flex gap-2 flex-wrap">
           {TIME_RANGES.map(period => 
-            <StoryOpener key={period.time_range} label={period.label} time_range={period.time_range} />
+            <StoryOpener className="cursor-pointer px-2 py-1 text-sm rounded-lg capitalize bg-primary font-medium border " key={period.time_range} time_range={period.time_range}>
+              {period.label}
+            </StoryOpener>
           )}
         </div>
       </div>

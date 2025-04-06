@@ -9,7 +9,7 @@ import { FaExternalLinkAlt } from 'react-icons/fa'
 export const NavBar = () => {
   return (
     <div className='h-navbar flex justify-center gap-4 mx-4'>
-      <div className='basis-1/5 hidden lg:flex justify-start items-center'>
+      <div className='basis-1/5 flex justify-start items-center'>
         <Link href={'/'} className='p-3 bg-card hover:opacity-80 rounded-full'><RxHome className='size-6' /></Link>
       </div>
       <InfoPicker />
