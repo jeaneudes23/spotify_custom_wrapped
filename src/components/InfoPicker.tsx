@@ -12,12 +12,12 @@ export const InfoPicker = () => {
 
   return (
     <div className="flex justify-between items-center grow gap-2">
-      <div className="text-sm flex items-center gap-2 flex-wrap capitalize">
+      <div className="text-sm hidden lg:flex items-center gap-2 flex-wrap capitalize">
         {PAGES.map(page => 
           <Link key={page} href={`/${page}`} className={`px-3 py-1 rounded-md font-medium ${path == `/${page}` ? 'bg-foreground text-background' : 'bg-white/20'}`}>{page}</Link>
         )}
       </div>
-      <div>
+      <div className='ml-auto sm:ml-auto'>
         <SwitchTimeRange />
       </div>
     </div>

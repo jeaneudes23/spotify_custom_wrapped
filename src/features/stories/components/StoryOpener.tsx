@@ -4,19 +4,20 @@ import { getTopArtists } from '@/features/artists/api/artistsApi'
 import { Artist } from '@/features/artists/schema/artistsSchema'
 import { getTopTracks } from '@/features/tracks/api/tracksApi'
 import { Track } from '@/features/tracks/schema/tracksSchema'
+import { TIME_RANGES } from '@/lib/constants'
 import { TimeRange } from '@/lib/types'
 import { formatDuration } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState, useTransition } from 'react'
+import { PropsWithChildren, useEffect, useState, useTransition } from 'react'
 import { AiOutlineLoading } from 'react-icons/ai'
 import { BiDownload, BiPlay, BiStop, BiX } from 'react-icons/bi'
 
 
-interface Props {
-  label: string,
+interface Props extends PropsWithChildren {
   time_range: TimeRange,
+  className?: string
 }
 
 const LIMIT = 10
@@ -26,12 +27,13 @@ const SLIDES = ['artists', 'tracks'] as const
 
 type Slide = typeof SLIDES[number]
 
-export const StoryOpener = ({ label, time_range }: Props) => {
+export const StoryOpener = ({ time_range , className , children }: Props) => {
   const [enabled, setEnabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
   const [isPaused, setIsPaused] = useState<boolean>(true)
   const [current_slide, setCurrentSlide] = useState<Slide>('artists')
   const [isClosing, startClosing] = useTransition()
+  const time_range_label = TIME_RANGES.find(period => period.time_range == time_range)?.label ?? ''
 
   const getStoryData = async () => {
     const [{ artists }, { tracks }] = await Promise.all([await getTopArtists({ time_range, limit: LIMIT }), await getTopTracks({ time_range, limit: LIMIT })])
@@ -72,8 +74,8 @@ export const StoryOpener = ({ label, time_range }: Props) => {
 
   return (
     <>
-      <button onClick={showStory} className="size-12 relative aspect-square border-primary border-2 rounded-full group cursor-pointer">
-        <span className='text-xs capitalize absolute left-1/2 -translate-x-1/2 -top-6 translate-y-2 duration-150 opacity-0 pointer-events-none transition-all group-hover:translate-y-0 group-hover:opacity-100 px-1 py-0.5 rounded-md bg-foreground text-background font-medium whitespace-pre'>{label}</span>
+      <button onClick={showStory} className={className}>
+        {children}
       </button>
 
 
@@ -124,8 +126,8 @@ export const StoryOpener = ({ label, time_range }: Props) => {
                 <ProgressBar isPaused={isPaused || !isVisible} />
                 <div className="bg-card rounded-md shadow-foreground/10 shadow-lg overflow-hidden h-full">
                   <div className={`h-full flex transition-all duration-200 ${current_slide == 'artists' ? '' : '-translate-x-full'}`}>
-                    <ArtistsSlide artists={data.artists} label={label} />
-                    <TracksSlide tracks={data.tracks} label={label} />
+                    <ArtistsSlide artists={data.artists} time_range_label={time_range_label} />
+                    <TracksSlide tracks={data.tracks} time_range_label={time_range_label} />
                   </div>
                 </div>
               </div>
@@ -137,12 +139,12 @@ export const StoryOpener = ({ label, time_range }: Props) => {
 }
 
 
-const ArtistsSlide = ({ artists, label }: { artists: Artist[], label: string }) => {
+const ArtistsSlide = ({ artists, time_range_label }: { artists: Artist[], time_range_label: string }) => {
   return (
     <div className='basis-full shrink-0 h-full flex flex-col'>
       <div className='px-6 mt-3'>
         <h3 className='text-2xl font-bold'>Top Artists</h3>
-        <p className='font-medium text-muted-foreground capitalize'>{label}</p>
+        <p className='font-medium text-muted-foreground capitalize'>{time_range_label}</p>
       </div>
       <div className='overflow-y-auto px-6 space-y-2 my-3'>
         {artists?.map((artist, index) =>
@@ -157,12 +159,12 @@ const ArtistsSlide = ({ artists, label }: { artists: Artist[], label: string }) 
   )
 }
 
-const TracksSlide = ({ tracks, label }: { tracks: Track[], label: string }) => {
+const TracksSlide = ({ tracks, time_range_label }: { tracks: Track[], time_range_label: string }) => {
   return (
     <div className='basis-full shrink-0 h-full flex flex-col'>
       <div className='px-6 mt-3'>
         <h3 className='text-2xl font-bold'>Top Tracks</h3>
-        <p className='font-medium text-muted-foreground capitalize'>{label}</p>
+        <p className='font-medium text-muted-foreground capitalize'>{time_range_label}</p>
       </div>
       <div className='overflow-y-auto px-6 space-y-2 my-3'>
         {tracks.map((track, index) =>
