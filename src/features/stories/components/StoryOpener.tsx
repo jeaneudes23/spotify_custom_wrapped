@@ -10,9 +10,9 @@ import { formatDuration } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PropsWithChildren, useEffect, useState, useTransition } from 'react'
+import { PropsWithChildren, useState, useTransition } from 'react'
 import { AiOutlineLoading } from 'react-icons/ai'
-import { BiDownload, BiPlay, BiStop, BiX } from 'react-icons/bi'
+import { BiDownload } from 'react-icons/bi'
 
 
 interface Props extends PropsWithChildren {
@@ -21,7 +21,6 @@ interface Props extends PropsWithChildren {
 }
 
 const LIMIT = 10
-const SLIDE_DURATION = 10 // in seconds
 
 const SLIDES = ['artists', 'tracks'] as const
 
@@ -30,14 +29,13 @@ type Slide = typeof SLIDES[number]
 export const StoryOpener = ({ time_range , className , children }: Props) => {
   const [enabled, setEnabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
-  const [isPaused, setIsPaused] = useState<boolean>(true)
   const [current_slide, setCurrentSlide] = useState<Slide>('artists')
   const [isClosing, startClosing] = useTransition()
   const time_range_label = TIME_RANGES.find(period => period.time_range == time_range)?.label ?? ''
 
   const getStoryData = async () => {
-    const [{ artists }, { tracks }] = await Promise.all([await getTopArtists({ time_range, limit: LIMIT }), await getTopTracks({ time_range, limit: LIMIT })])
     setIsVisible(true)
+    const [{ artists }, { tracks }] = await Promise.all([await getTopArtists({ time_range, limit: LIMIT }), await getTopTracks({ time_range, limit: LIMIT })])
     if (!!!artists.length || !!!tracks.length) {
       throw new Error('No Data')
     }
@@ -51,19 +49,11 @@ export const StoryOpener = ({ time_range , className , children }: Props) => {
   })
 
   const showStory = () => {
-    setEnabled(true)
+    if (!enabled) {
+      setEnabled(true)
+    }
     setIsVisible(true)
   }
-
-  useEffect(() => {
-    if (!isVisible || isLoading || isPaused) return;
-
-    const intervalId = setInterval(() => {
-      setCurrentSlide((prev) => (prev === 'artists' ? 'tracks' : 'artists'));
-    }, SLIDE_DURATION * 1000);
-
-    return () => clearInterval(intervalId);
-  }, [isVisible, isLoading, isPaused]);
 
   const close = () => {
     startClosing(async () => {
@@ -94,36 +84,18 @@ export const StoryOpener = ({ time_range , className , children }: Props) => {
               :
               <div className={`max-w-md fixed inset-8 max-h-96 mt-8 lg:mt-16 mx-auto space-y-4 z-50 ${isClosing ? 'animate-[fade-out_0.3s_ease_1_forwards]' : 'animate-[fade-in_0.3s_ease_1_forwards]'}`}>
                 <div className='flex justify-between'>
-                  <div className='flex items-center gap-4'>
+                  <div className='flex items-center gap-2'>
                     {SLIDES.map(slide =>
-                      <button disabled={isLoading || !isVisible} className={`px-4 py-2 text-sm font-medium capitalize rounded-full cursor-pointer ${current_slide == slide ? 'bg-foreground text-card-foreground' : 'bg-card-foreground '}`} key={slide} onClick={() => setCurrentSlide(slide)}>{slide}</button>
+                      <button disabled={isLoading || !isVisible} className={`px-3 py-1 text-sm font-medium capitalize rounded-full cursor-pointer ${current_slide == slide ? 'bg-foreground text-card-foreground' : 'bg-card-foreground '}`} key={slide} onClick={() => setCurrentSlide(slide)}>{slide}</button>
                     )}
                   </div>
                   <div className='flex items-center gap-2'>
-                    <button onClick={() => setIsPaused(prev => !prev)} className='p-2 text-sm font-medium capitalize rounded-full cursor-pointer bg-card-foreground hover:opacity-80 transition-all'>
-                      {isPaused ?
-                        <>
-                          <span className="sr-only">Play</span>
-                          <BiPlay className='size-5' />
-                        </>
-                        :
-                        <>
-                          <span className="sr-only">Pause</span>
-                          <BiStop className='size-5' />
-                        </>
-                      }
-                    </button>
                     <button className='p-2 text-sm font-medium capitalize rounded-full cursor-pointer bg-primary hover:opacity-80 transition-all'>
                       <span className="sr-only">download</span>
                       <BiDownload className='size-5' />
                     </button>
-                    <button onClick={close} className='p-2 text-sm font-medium capitalize rounded-full cursor-pointer bg-red-600 hover:opacity-80 transition-all'>
-                      <span className="sr-only">close</span>
-                      <BiX className='size-5' />
-                    </button>
                   </div>
                 </div>
-                <ProgressBar isPaused={isPaused || !isVisible} />
                 <div className="bg-card rounded-md shadow-foreground/10 shadow-lg overflow-hidden h-full">
                   <div className={`h-full flex transition-all duration-200 ${current_slide == 'artists' ? '' : '-translate-x-full'}`}>
                     <ArtistsSlide artists={data.artists} time_range_label={time_range_label} />
@@ -189,14 +161,6 @@ const TracksSlide = ({ tracks, time_range_label }: { tracks: Track[], time_range
           </div>
         )}
       </div>
-    </div>
-  )
-}
-
-const ProgressBar = ({ isPaused }: { isPaused: boolean }) => {
-  return (
-    <div className='bg-white h-1 w-full rounded-full overflow-hidden'>
-      <div className={`h-full bg-primary ${isPaused ? 'w-0' : `animate-[story_linear_infinite]`}`} style={{ animationDuration: `${SLIDE_DURATION}s`, animationPlayState: isPaused ? 'paused' : 'revert' }}></div>
     </div>
   )
 }

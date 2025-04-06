@@ -20,16 +20,6 @@
   --spacing-footer: 68px;
   --spacing-story-line: 6px;
 
-  /* --animate-fade-in: story 5s linear infinite; */
-
-  @keyframes story {
-    from {
-      width: 0%;
-    }
-    to {
-      width: 100%;
-    }
-  }
 
   @keyframes fade-in {
     from {
