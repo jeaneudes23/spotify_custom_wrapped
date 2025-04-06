@@ -3,7 +3,6 @@
 import { getTopArtists } from '@/features/artists/api/artistsApi'
 import { Artist } from '@/features/artists/schema/artistsSchema'
 import { getTopTracks } from '@/features/tracks/api/tracksApi'
-import { TrackItem } from '@/features/tracks/components/TrackItem'
 import { Track } from '@/features/tracks/schema/tracksSchema'
 import { TimeRange } from '@/lib/types'
 import { formatDuration } from '@/lib/utils'
@@ -13,8 +12,6 @@ import Link from 'next/link'
 import { useEffect, useState, useTransition } from 'react'
 import { AiOutlineLoading } from 'react-icons/ai'
 import { BiDownload, BiPlay, BiStop, BiX } from 'react-icons/bi'
-import { FaPlay, FaStop } from 'react-icons/fa'
-import { FaX } from 'react-icons/fa6'
 
 
 interface Props {
