@@ -90,7 +90,7 @@ export const StoryOpener = ({ label, time_range }: Props) => {
                 <p>Error</p>
               </div>
               :
-              <div className={`w-full max-w-md fixed inset-8 max-h-96 mt-8 lg:mt-16 mx-auto space-y-4 z-50 ${isClosing ? 'animate-[fade-out_0.3s_ease_1_forwards]' : 'animate-[fade-in_0.3s_ease_1_forwards]'}`}>
+              <div className={`max-w-md fixed inset-8 max-h-96 mt-8 lg:mt-16 mx-auto space-y-4 z-50 ${isClosing ? 'animate-[fade-out_0.3s_ease_1_forwards]' : 'animate-[fade-in_0.3s_ease_1_forwards]'}`}>
                 <div className='flex justify-between'>
                   <div className='flex items-center gap-4'>
                     {SLIDES.map(slide =>
