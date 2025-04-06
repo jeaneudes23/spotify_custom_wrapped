@@ -6,7 +6,7 @@ import { BiUser } from 'react-icons/bi'
 export const Profile = async () => {
   const session = await auth()
   return (
-    <div className='bg-card rounded-md basis-1/5 shrink-0 h-full flex flex-col'>
+    <div className='bg-card rounded-md basis-1/5 shrink-0 h-full hidden lg:flex flex-col'>
       <div className='shrink-o p-6 bg-gradient-to-bl to-card bg-muted rounded-t-[inherit] flex items-center gap-4'>
         <div className='basis-1/4 aspect-square bg-card rounded-full flex items-center justify-center'>
           <BiUser className='w-1/3 h-auto'/>
