@@ -24,7 +24,7 @@ export const TopArtists = () => {
     <LoadingSkeleton /> 
     : status == "error" ? 
     <p>Error </p> :  (
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-6">
         {artists.map((artist)=> 
           <ArtistCard  key={artist.id} artist={artist}/>
         )}
@@ -34,7 +34,7 @@ export const TopArtists = () => {
 
 const LoadingSkeleton = () => {
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-6">
       {Array.from({length: LIMIT},(_,index) =>
         <ArtistCardSkeleton key={index}/>
       )}

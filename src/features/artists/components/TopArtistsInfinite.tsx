@@ -24,7 +24,7 @@ export const TopArtistsInfinite = () => {
     : status === 'error' ? 
     <p>Error</p>:  (
     <div className="grid gap-6">
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-y-6 gap-x-3">
+    <div className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-y-6 gap-x-3">
       {data.pages.map((group,i) => 
         <Fragment key={i}>
           {group.artists.map(artist => 
@@ -46,7 +46,7 @@ export const TopArtistsInfinite = () => {
 
 const LoadingSkeleton = () => {
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-6">
       {Array.from({length: 20},(_,index) =>
         <ArtistCardSkeleton key={index}/>
       )}
