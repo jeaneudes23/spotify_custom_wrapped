@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${poppins.variable} max-w-6xl mx-auto font-sans antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${poppins.variable} font-sans antialiased bg-background text-foreground`}
       >
         {children}
         <Footer />

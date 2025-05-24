@@ -8,9 +8,9 @@ export default function layout({ children }: PropsWithChildren) {
   return (
     <Providers>
       <NavBar />
-      <div className="flex grow h-main-content">
-        <main className="flex flex-col grow">{children}</main>
-      </div>
+      <main className="h-main-content flex flex-col max-w-6xl mx-auto grow">
+        {children}
+      </main>
     </Providers>
   );
 }

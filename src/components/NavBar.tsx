@@ -8,7 +8,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 
 export const NavBar = () => {
   return (
-    <div className="h-navbar flex justify-between items-center gap-2 lg:gap-4 max-w-6xl px-4">
+    <div className="h-navbar flex justify-between items-center gap-2 lg:gap-4 max-w-6xl mx-auto px-4 lg:px-0">
       <div className="flex">
         <Link href={"/"} className="p-3 bg-card hover:opacity-80 rounded-full">
           <RxHome className="size-6" />
