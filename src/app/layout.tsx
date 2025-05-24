@@ -3,7 +3,6 @@ import { Geist, Poppins } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -11,10 +10,9 @@ const geistSans = Geist({
 
 const poppins = Poppins({
   variable: "--font-poppins",
-  subsets: ['latin'],
-  weight: ['100','200','300','400','500','600','700','800','900']
-})
-
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Custom Spotify Wrapped By Youdes",
@@ -28,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${poppins.variable} font-sans antialiased bg-background text-foreground`}>
+      <body
+        className={`${geistSans.variable} ${poppins.variable} max-w-6xl mx-auto font-sans antialiased bg-background text-foreground`}
+      >
         {children}
         <Footer />
       </body>
